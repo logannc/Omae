@@ -240,7 +240,13 @@ function Attributes(priority) {
             })
         } else if (key.length == 5) {
             this.__defineGetter__(key.slice(1), function() {return this[key].value})
-            this.__defineSetter__(key.slice(1), function(val) { old = this[key].value; this[key].value = val; if (this.EDGE + this.MAGI > this.SpecPoints) { this[key].value = old } })
+            this.__defineSetter__(key.slice(1), function(val) { 
+                if (val > this[key].max || val < this[key].min) {
+                    return
+                } else {
+                    old = this[key].value; this[key].value = val; if (this.EDGE + this.MAGI > this.SpecPoints) { this[key].value = old }
+                }
+            })
         }
     }, this)
     this.SpentPoints = function () {
