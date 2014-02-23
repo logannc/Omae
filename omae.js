@@ -370,38 +370,6 @@ Chummer.prototype.setPriority = function(priority, priorityType, data) {
 
 
 
-Chummer.prototype.setMetatype = function(metatype, priority) {
-    switch (metatype.toLowerCase()) {
-            case "human":
-                switch (priority.toLowerCase()) {
-                        case "a":
-                        
-                        case "b":
-                        
-                        case "c":
-                        
-                        case "d":
-                        
-                        case "e":
-                        
-                        default:
-                            // throw an error
-                        
-                }
-            case "elf":
-            
-            case "dwarf":
-            
-            case "ork":
-            
-            case "troll":
-            
-            default:
-                // throw an error
-    }
-}
-
-
 var priorityA;
 var priorityB;
 var priorityC;
