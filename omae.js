@@ -220,15 +220,21 @@ function Attributes(priority) {
         if (key.length == 4) {
             this.__defineGetter__(key.slice(1), function() {return this[key].value})
             this.__defineSetter__(key.slice(1), function(val) {
-                noneatmax = true;
-                Object.keys(this).forEach(function (key) {
-                    if (key.length == 4) { 
-                        if (this[key].value == this[key].max) {
-                            noneatmax = false
+                if (val > this[key].max || val < this[key].min) {
+                    return
+                } else if (val == this[key].max) {
+                    noneatmax = true;
+                    Object.keys(this).forEach(function (key) {
+                        if (key.length == 4) { 
+                            if (this[key].value == this[key].max) {
+                                noneatmax = false
+                            }
                         }
+                    }, this)
+                    if (noneatmax) {
+                         old = this[key].value; this[key].value = val; if (this.SpentPoints() > this.TotalPoints) { this[key].value = old }
                     }
-                }, this)
-                if (noneatmax) {
+                } else {
                     old = this[key].value; this[key].value = val; if (this.SpentPoints() > this.TotalPoints) { this[key].value = old }
                 }
             })
